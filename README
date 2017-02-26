@@ -1,0 +1,9 @@
+mingw-get can't download files from sourceforge on winxp
+because sourceforge blocks user-agents of IE6-8 on winxp
+
+this tiny program is a http proxy server, usage:
+1. modify this script if necessary
+2. run this script using python 3 on a unix system
+3. set http proxy setting in 'Internet Settings' in 'Control Panel' on winxp
+4. run mingw-get on winxp, it should be able to download files now
+
