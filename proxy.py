@@ -34,6 +34,8 @@ while True:
     c, addr = s.accept()
     pid = os.fork()
     if pid == 0:
-        handle_client(c)
-        break
+        if os.fork() == 0:
+            handle_client(c)
+        exit(0)
+    os.waitpid(pid, 0)
 
