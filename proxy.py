@@ -1,11 +1,14 @@
 import os, socket
 import urllib.request
 
+# set fake user agent here
+ua = 'Wget/1.19.4 (linux-gnu)'
+
 def handle_client(c):
     hdr = c.recv(1024).decode("utf-8")
     url = hdr.split(' ')[1]
     print(url, "=> downloading")
-    data = urllib.request.urlopen(url).read()
+    data = urllib.request.urlopen(urllib.request.Request(url, headers={'User-Agent': ua})).read()
     print(url, "=> fetched, len:", len(data))
     c.send("HTTP/1.1 200 OK\r\n".encode("utf-8"))
     c.send(("Content-Length: " + str(len(data)) + "\r\n").encode("utf-8"))
